@@ -1,0 +1,29 @@
+﻿[Version]
+signature="$CHICAGO$"
+
+[DefaultInstall]
+CopyFiles = Scheme.Cur
+AddReg    = Scheme.Reg
+
+[DestinationDirs]
+Scheme.Cur = 10,"Cursors\GUNDAM00Q"
+
+[Scheme.Cur]
+gn00_arrow.ani
+gn00_busy.ani
+gn00_cross.cur
+gn00_ew.ani
+gn00_hand.ani
+gn00_help.cur
+gn00_ibeam.ani
+gn00_move.ani
+gn00_nesw.ani
+gn00_no.cur
+gn00_ns.ani
+gn00_nwse.ani
+gn00_pen.ani
+gn00_up.cur
+gn00_work.ani
+
+[Scheme.Reg]
+HKCU,"Control Panel\Cursors\Schemes","GUNDAM-00Q",0x00020000,"%SystemRoot%\Cursors\GUNDAM00Q\gn00_arrow.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_help.cur,%SystemRoot%\Cursors\GUNDAM00Q\gn00_work.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_busy.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_cross.cur,%SystemRoot%\Cursors\GUNDAM00Q\gn00_ibeam.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_pen.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_no.cur,%SystemRoot%\Cursors\GUNDAM00Q\gn00_ns.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_ew.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_nwse.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_nesw.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_move.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_up.cur,%SystemRoot%\Cursors\GUNDAM00Q\gn00_hand.ani,%SystemRoot%\Cursors\GUNDAM00Q\gn00_cross.cur,%SystemRoot%\Cursors\GUNDAM00Q\gn00_up.cur"

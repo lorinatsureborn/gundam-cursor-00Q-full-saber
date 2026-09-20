@@ -1,0 +1,34 @@
+{
+  "out": "out",
+  "scheme_name": "CURSORFORGE-DEMO",
+  "reg_dir": "CURSORFORGEDEMO",
+  "sizes": [256, 128, 96, 64, 48, 32],
+  "slots": [
+    {
+      "role": "arrow",
+      "file": "demo_arrow.cur",
+      "master": "art/arrow.png",
+      "hotspot": "ul"
+    },
+    {
+      "role": "crosshair",
+      "file": "demo_cross.cur",
+      "master": "art/crosshair.png",
+      "hotspot": "c"
+    },
+    {
+      "role": "hand",
+      "file": "demo_hand.cur",
+      "master": "art/hand.png",
+      "hotspot": "top"
+    },
+    {
+      "role": "working",
+      "file": "demo_work.ani",
+      "frames": "art/frames/work_*.png",
+      "hotspot": "c",
+      "jiffy": 4,
+      "sizes": [96, 64, 48, 32]
+    }
+  ]
+}
