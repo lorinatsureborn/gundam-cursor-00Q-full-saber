@@ -6,7 +6,15 @@
 > 同人作品，非商业。高达 / 00 Qan[T] / GN 太阳炉 等名称与设定版权归
 > **创通·サンライズ / バンダイ**。本仓库与权利人无隶属关系。
 
-![总表](preview/_scheme.png)
+![动画总表](preview/_scheme_anim.gif)
+
+↑ **动画总表** —— 15 格全部动起来，一眼看完 11 个动态槽。
+全彩版（**APNG**，推荐）在 [`preview/_scheme_anim.png`](preview/_scheme_anim.png)；
+上面这张 GIF 是给"只认 GIF 的工具"的兜底，发光渐变会被压成色带（256 色限制）。
+
+静态总表：[`preview/_scheme.png`](preview/_scheme.png) ·
+单个动效：`preview/ani_*.gif`（15 个）·
+浏览器里看全部：[`preview/preview.html`](preview/preview.html)
 
 ---
 
