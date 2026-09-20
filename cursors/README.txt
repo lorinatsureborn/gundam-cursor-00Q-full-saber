@@ -14,21 +14,21 @@ GUNDAM-00Q 指针方案
   右键 out\uninstall.ps1 -> 使用 PowerShell 运行
 
 文件
-  gn00_arrow.ani       正常选择       动态 .ani 32帧 4档 每块67.3KB 热点(1, 0)   2207372 B
+  gn00_arrow.ani       正常选择       动态 .ani 32帧 5档 每块32.8KB 热点(1, 0)   1030958 B
   gn00_help.cur        帮助选择       静态 .cur 热点(10,3)          117556 B
-  gn00_work.ani        后台运行       动态 .ani 16帧/15fps        1103724 B
-  gn00_busy.ani        忙          动态 .ani 16帧/15fps        1103724 B
+  gn00_work.ani        后台运行       动态 .ani 16帧/15fps         872152 B
+  gn00_busy.ani        忙          动态 .ani 16帧/15fps         800206 B
   gn00_cross.cur       精确选择       静态 .cur 热点(140,140)        91013 B
-  gn00_ibeam.ani       文本选择       动态 .ani 32帧 4档 每块67.3KB 热点(16, 16)   2207372 B
-  gn00_pen.ani         手写         动态 .ani 32帧 4档 每块67.3KB 热点(1, 27)   2207372 B
+  gn00_ibeam.ani       文本选择       动态 .ani 32帧 5档 每块12.1KB 热点(16, 16)    389398 B
+  gn00_pen.ani         手写         动态 .ani 32帧 5档 每块20.0KB 热点(1, 27)    648874 B
   gn00_no.cur          不可用        静态 .cur 热点(140,140) 无描边    175315 B
-  gn00_ns.ani          垂直调整       动态 .ani 32帧 4档 每块67.3KB rot=-45   2207372 B
-  gn00_ew.ani          水平调整       动态 .ani 32帧 4档 每块67.3KB rot=45   2207372 B
-  gn00_nwse.ani        对角调整1      动态 .ani 32帧 4档 每块67.3KB rot=0   2207372 B
-  gn00_nesw.ani        对角调整2      动态 .ani 32帧 4档 每块67.3KB rot=90   2207372 B
-  gn00_move.ani        移动         动态 .ani 32帧 4档 每块67.3KB   2207372 B
+  gn00_ns.ani          垂直调整       动态 .ani 32帧 5档 每块12.4KB rot=-45    373590 B
+  gn00_ew.ani          水平调整       动态 .ani 32帧 5档 每块12.1KB rot=45    362904 B
+  gn00_nwse.ani        对角调整1      动态 .ani 32帧 5档 每块16.3KB rot=0    482890 B
+  gn00_nesw.ani        对角调整2      动态 .ani 32帧 5档 每块15.5KB rot=90    462808 B
+  gn00_move.ani        移动         动态 .ani 32帧 5档 每块31.0KB    869618 B
   gn00_up.cur          备用选择       静态 .cur 热点(129,14)         85841 B
-  gn00_hand.ani        链接选择       动态 .ani 32帧 4档 每块67.3KB 热点(12, 1)   2207372 B
+  gn00_hand.ani        链接选择       动态 .ani 32帧 5档 每块22.3KB 热点(12, 1)    726144 B
 
 静态 .cur 内嵌 256/128/96/64/48/32 六档，Windows 自己择优；
 动态 .ani 内嵌 96/64/48/32 四档（.ani 每个 icon 块有 ~69632 B 硬上限，放不下 128）。

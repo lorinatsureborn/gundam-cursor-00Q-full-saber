@@ -25,7 +25,8 @@ __all__ = ["TIER_OUTLINE", "OUTLINE_RGB", "hotspot", "tier_outline",
 
 #: 描边宽（**按该档实际像素**）
 TIER_OUTLINE = {256: 4, 128: 3, 96: 2, 64: 2, 48: 1, 32: 1}
-#: 静态 `.cur` 可用的档位（`.ani` 用 [96, 64, 48, 32]，见 ani.ICON_CHUNK_LIMIT）
+#: 静态 `.cur` 可用的档位。`.ani` 见 `ani.ICON_CHUNK_LIMIT` —— 档位用 **PNG** 存
+#: 时几乎不花钱（`[128,96,64,48,32]` 全 PNG 仅 15.7 KB），别默认用 BMP。
 CUR_SIZES = [256, 128, 96, 64, 48, 32]
 OUTLINE_RGB = (12, 14, 18)
 

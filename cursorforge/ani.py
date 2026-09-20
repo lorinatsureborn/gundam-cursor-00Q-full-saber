@@ -15,7 +15,7 @@
 **① `.ani` 不是"每帧一张 32px 图"，而是每帧一个完整的多分辨率 `.cur`。**
    所以 4 档 × 32 帧 = 128 张位图。体积就是这么来的。
 
-**② 每个 icon 块有硬上限 ≈ 69632 B。** 超了不报错，只是**加载不出**。
+**② 每个 icon 块有上限（实测 ~66 KB，取 64 KB 作安全线）。** 超了不报错，只是**加载不出**。
 
        .ani 体积 ≈ 帧数 × 档数 × 68.7 KB
        32 帧 × 4 档 → 约 2.2 MB / 个指针
@@ -34,9 +34,33 @@ from __future__ import annotations
 import struct
 
 __all__ = ["chunk", "ani_bytes", "write_ani", "read_ani", "dump_ani",
-           "ICON_CHUNK_LIMIT"]
+           "cur_pixels", "ICON_CHUNK_LIMIT", "ICON_PIXEL_LIMIT"]
 
-ICON_CHUNK_LIMIT = 69632          # 实测上限
+#: 每个 icon 块的**字节**上限。实测全 BMP 的 68,966 B 能加载 ⇒ 取 69,632。
+ICON_CHUNK_LIMIT = 69632
+
+#: ★ 每个 icon 块的**解码后总像素**上限。
+#:
+#: 只查字节是不够的 —— 实测数据里有一条**矛盾**：
+#:
+#:     全 BMP  96,64,48,32      68,966 B / 16,640 px  → ✅
+#:     全 PNG  256..48          66,115 B / 97,536 px  → ✅
+#:     全 PNG  256..32          67,548 B / 98,560 px  → ❌
+#:
+#: BMP 的字节更多却过了、PNG 的更少却没过 ⇒ **不是单看字节**。
+#: 加上"解码后总像素"这条线，五个用例全部解释得通，
+#: 阈值落在 (97,536, 98,560]，很接近 **96×1024 = 98,304**。取 96,000 作安全线。
+ICON_PIXEL_LIMIT = 96000
+
+
+def cur_pixels(blob: bytes) -> int:
+    """数一个 `.cur` 字节流里**所有档的宽高乘积之和**（= 解码后的总像素）。"""
+    n = struct.unpack("<H", blob[4:6])[0]
+    tot = 0
+    for i in range(n):
+        e = blob[6 + 16 * i:6 + 16 * (i + 1)]
+        tot += (e[0] or 256) * (e[1] or 256)
+    return tot
 
 
 def chunk(name: bytes, payload: bytes) -> bytes:
@@ -56,12 +80,22 @@ def ani_bytes(cur_blobs, jiffy: int = 4, iwidth: int = 0, iheight: int = 0) -> b
     n = len(cur_blobs)
     if n == 0:
         raise ValueError("至少要一帧")
+    # ⚠️ **两条线都要查**：字节 + 解码后总像素。
+    #    只查字节会放过"PNG 压得很小但档位很多"的组合
+    #    （实测 67,548 B / 98,560 px 就是加载不出的）。见 ICON_PIXEL_LIMIT。
     over = [i for i, c in enumerate(cur_blobs) if len(c) > ICON_CHUNK_LIMIT]
     if over:
         raise ValueError(
-            "第 %s 帧的 icon 块超过 %d B 上限（实测最胖 %d B）—— "
-            "减少档位或帧数" % (over[:5], ICON_CHUNK_LIMIT,
-                            max(len(cur_blobs[i]) for i in over)))
+            "第 %s 帧的 icon 块超过 %d B 的字节上限（最胖 %d B）—— "
+            "减少档位，或改用 PNG 存（`cur_bytes(png_min=0)`）"
+            % (over[:5], ICON_CHUNK_LIMIT, max(len(cur_blobs[i]) for i in over)))
+    px = [i for i, c in enumerate(cur_blobs) if cur_pixels(c) > ICON_PIXEL_LIMIT]
+    if px:
+        raise ValueError(
+            "第 %s 帧的 icon 块解码后总像素超过 %d（最大 %d）—— "
+            "**这条线和字节无关**：PNG 压得再小也算这么多像素。"
+            "减少档位（尤其大档）或减帧数"
+            % (px[:5], ICON_PIXEL_LIMIT, max(cur_pixels(cur_blobs[i]) for i in px)))
     anih = struct.pack("<IIIIIIIII", 36, n, n, iwidth, iheight, 32, 1, jiffy, 1)
     fb = b"".join(chunk(b"icon", c) for c in cur_blobs)
     fram = b"LIST" + struct.pack("<I", len(b"fram") + len(fb)) + b"fram" + fb
