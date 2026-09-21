@@ -6,6 +6,23 @@
 > 同人作品，非商业。高达 / 00 Qan[T] / GN 太阳炉 等名称与设定版权归
 > **创通·サンライズ / バンダイ**。本仓库与权利人无隶属关系。
 
+---
+
+## 只想装上用？下载 Release 就行
+
+到 **[Releases](https://github.com/lorinatsureborn/gundam-cursor-00Q-full-saber/releases/latest)**
+下载 **`GUNDAM-00Q-Cursors-v1.0.zip`**：
+
+1. 解压（别在压缩包预览窗口里直接双击）
+2. 右键 `install.ps1` → **使用 PowerShell 运行**
+3. 权限提示点「是」 → 立即生效，不用重启
+
+包里带了预览图和一份**面向普通用户**的安装说明。
+⚠️ 若提示「无法加载文件，因为在此系统上禁止运行脚本」——
+这是下载文件的安全锁：右键 `install.ps1` → 属性 → 勾选**「解除锁定」**，再运行。
+
+---
+
 ![动画总表](preview/_scheme_anim.gif)
 
 ↑ **动画总表** —— 15 格全部动起来，一眼看完 11 个动态槽。
